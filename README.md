@@ -1,98 +1,90 @@
-# LazyEng — English Quiz Workbook | 초보자 영어 기초 퀴즈
+LazyEng — English Quiz Workbook | 초보자 영어 기초 퀴즈
+검은색 터미널 화면 대신 따뜻한 시험지 느낌의 GUI로 즐기는 초보자 맞춤형 오프라인 영어 학습 앱입니다. 초등, 중등, 고등 난이도를 선택해 한 세트당 정확히 20개의 객관식 문제를 풀며 연습할 수 있습니다.
 
-A friendly, offline English-learning app for beginners, presented as a warm paper-style GUI instead of a command-line quiz. Choose **Elementary (초등)**, **Middle School (중등)**, or **High School (고등)** and practice with exactly 20 multiple-choice questions per session.
+문제를 풀 때마다 한글 발음 가이드, 단어 뜻 및 품사, 쉬운 어법 해설, 모든 보기에 대한 피드백이 함께 제공됩니다. 기존 문제 은행과 퀴즈 시스템은 그대로 유지하며, 인터페이스는 파이썬 내장 라이브러리인 Tkinter를 사용합니다.
 
-Each answer reveals Korean pronunciation guides, word meanings and parts of speech, a plain-language grammar explanation, and feedback for every answer choice. The question banks and quiz mechanics are unchanged; the interface uses Python's built-in Tkinter library.
+🌟 주요 기능 (Features)
+시험지 감성 UI: 따뜻한 한지/모의고사 종이 톤의 배경, 가독성 높은 문제 카드, 상단 진행도 헤더 제공.
 
-## Features
+난이도별 문제 은행: 초등, 중등, 고등 각 난이도별 20문제씩 엄선된 문제 탑재.
 
-- Warm parchment palette, readable workbook-style question cards, and progress header.
-- Three curated levels with 20 questions in each level's bank.
-- Four clickable answer tiles, answer feedback, and next-question navigation.
-- Detailed Korean grammar and word explanations with Hangul pronunciation guides.
-- Score screen with an invitation to retry or choose another level.
-- Runs entirely offline. No analytics, telemetry, accounts, or network requests.
-- Tkinter UI uses only Python's standard library; no UI package installation needed.
+직관적인 퀴즈 진행: 클릭 가능한 4개의 보기 타일, 실시간 정답 피드백, 다음 문제 이동 버튼.
 
-## Requirements
+영포자 맞춤 해설: 한글 발음 가이드와 함께 제공되는 상세한 한국어 문법 및 단어 풀이.
 
-- Python 3.10 or newer with Tcl/Tk included (the standard Windows Python installer includes Tkinter).
-- Windows, macOS, or Linux desktop environment.
+최종 점수판: 결과 확인 후 재시도 또는 다른 난이도를 선택할 수 있는 결과 화면.
 
-## Run from source
+100% 오프라인 작동: 데이터 분석, 사용자 추적(텔레메트리), 계정 생성, 네트워크 요청이 일절 없음.
 
-Clone the repository and open a terminal in its directory:
+외부 라이브러리 0개: 파이썬 기본 표준 라이브러리(Tkinter)만 사용하여 추가 패키지 설치(pip install) 불필요.
 
-```bash
+📋 요구 사항 (Requirements)
+Python 3.10 이상 (Tcl/Tk 포함 — 표준 윈도우용 파이썬 설치 파일에 Tkinter가 기본 포함되어 있습니다).
+
+Windows, macOS, Linux 데스크톱 환경.
+
+🚀 소스 코드로 실행하기 (Run from source)
+저장소를 복사(Clone)한 뒤 터미널을 열어 실행합니다:
+
+Bash
 git clone https://github.com/your-username/english-step-by-step-quiz.git
 cd english-step-by-step-quiz
 python main.py
-```
+난이도 선택 창이 열리면 초등, 중등, 고등 중 원하는 단계를 선택하여 시작하세요.
 
-The level-selection window opens. Choose Elementary, Middle School, or High School to begin.
+📦 독립형 윈도우 GUI 실행 파일(.exe) 만들기
+타겟 컴퓨터에 파이썬이 설치되어 있지 않아도 실행할 수 있는 단일 실행 파일(.exe)을 생성합니다. 윈도우의 PowerShell에서 아래 명령어로 빌드할 수 있습니다:
 
-## Build a standalone Windows GUI executable
-
-The single-file executable runs without Python installed on the target PC. Build it on Windows with PowerShell:
-
-```powershell
+PowerShell
 python -m pip install -r requirements-build.txt
 .\build_windows.ps1
-```
+생성된 실행 파일은 dist\EnglishQuiz.exe 경로에 위치합니다. 더블 클릭하면 까만 터미널 창 없이 깔끔한 GUI 화면으로 바로 실행됩니다. 직접 빌드하고 싶다면 아래 명령어를 사용하세요:
 
-The windowed executable is created at `dist\EnglishQuiz.exe`. Double-click it to start; it opens the GUI without a console window. To rebuild it directly:
-
-```powershell
+PowerShell
 python -m PyInstaller --noconfirm --clean --onefile --noconsole --name EnglishQuiz main.py
-```
+(PyInstaller는 빌드하는 컴퓨터에만 필요하며, 만들어진 .exe를 실행할 때는 필요하지 않습니다. 빌드 스크립트는 --noconsole 옵션을 사용하여 터미널 창을 숨깁니다. 백신 프로그램이 서명되지 않은 실행 파일을 가짜 바이러스(False Positive)로 감지할 수 있으니 배포 전 스캔해 보세요.)
 
-PyInstaller is needed only on the build machine and is not required to run the `.exe`. The build script uses `--noconsole` to create a single-window GUI app. Build Windows executables on Windows. Review and scan the resulting executable before distributing it; unsigned self-extracting applications may receive antivirus warnings.
-
-## Project layout
-
-```text
+📁 프로젝트 구조 (Project Layout)
+Plaintext
 .
-├── main.py                  # GUI entry point
-├── gui.py                   # Tkinter screens and user interaction
-├── quiz_engine.py           # Question model, answer checking, session state
-├── data_loader.py           # Level validation and Korean word guides
-├── questions/
+├── main.py                 # GUI 시작점 (Entry Point)
+├── gui.py                  # Tkinter 화면 및 사용자 인터랙션 처리
+├── quiz_engine.py          # 문제 모델, 정답 채점, 세션 상태 관리
+├── data_loader.py          # 난이도 검증 및 한글 단어 가이드 로더
+├── questions/              # 난이도별 문제 은행 폴더
 │   ├── __init__.py
-│   ├── elementary.py        # 초등 bank (20 questions)
-│   ├── middle.py            # 중등 bank (20 questions)
-│   └── high.py              # 고등 bank (20 questions)
-├── tests/
+│   ├── elementary.py       # 초등 문제 은행 (20문제)
+│   ├── middle.py           # 중등 문제 은행 (20문제)
+│   └── high.py             # 고등 문제 은행 (20문제)
+├── tests/                  # 단위 테스트 폴더
 │   └── test_quiz_program.py
-├── build_windows.ps1        # Build the one-file, no-console .exe
-├── requirements-build.txt   # Build-only PyInstaller dependency
+├── build_windows.ps1       # 단일 .exe (콘솔 숨김) 빌드 스크립트
+├── requirements-build.txt  # 빌드 전용 PyInstaller 의존성 파일
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```
-
-## Run tests
-
-```bash
+🧪 테스트 실행 (Run tests)
+Bash
 python -m unittest discover -s tests -v
-```
+테스트는 파이썬 내장 unittest 프레임워크를 사용하므로 인터넷 연결이나 추가 패키지 설치 없이 실행 가능합니다.
 
-The tests use Python's built-in `unittest` framework and do not need a network connection or extra packages.
+🔒 보안 및 개인정보 보호 보증 (Security & Privacy Guarantee)
+100% 오프라인 작동: 이 앱에는 네트워크 클라이언트, 데이터 분석, 추적 코드, 업데이트 확인 또는 온라인 서비스 연동 기능이 없으며 네트워크 요청을 보내지 않습니다.
 
-## Security & Privacy Guarantee
+데이터 수집 및 저장 0%: 사용자의 답안과 퀴즈 진행 상태는 현재 실행 중인 메모리에만 일시 보관됩니다. 응답이나 점수를 저장, 업로드, 기록하지 않습니다.
 
-- **Offline operation:** The app has no network client, analytics, telemetry, update checker, or online service integration. It does not make network requests.
-- **No collection or logging:** Answers and quiz progress are held in memory for the current session. The app does not save, upload, or log responses or scores.
-- **No user-file access:** The app reads its bundled/local question modules only. It does not prompt for paths, open user-selected files, or modify question banks.
-- **Restricted inputs:** Learners select from fixed levels and four answer choices. Input is not interpreted as a command, evaluated as code, or used to construct a path.
-- **No risky execution:** The application does not use `eval`, `exec`, shell commands, or subprocesses.
-- **Executable transparency:** PyInstaller is a build-time tool. A one-file PyInstaller executable extracts bundled runtime components to a temporary directory while it runs; this is bootloader behavior, not storage of quiz data. The quiz itself creates no persistent user data. Build only from source you trust and scan distributed executables. Antivirus products may flag unsigned self-extracting files; no project can guarantee how every antivirus classifies an executable.
+사용자 파일 접근 불가: 프로그램 내부/로컬에 포함된 문제 모듈만 읽어옵니다. 사용자에게 경로를 요구하거나 외부 파일을 열지 않으며 문제 데이터를 수정하지 않습니다.
 
-These statements describe the application's code and intended behavior, not an absolute guarantee that any software or third-party build environment is risk-free. Obtain build tools from trusted sources and verify release artifacts.
+제한된 입력값: 학습자는 정해진 난이도와 4개의 보기 중 하나만 선택할 수 있습니다. 입력값이 시스템 명령으로 해석되거나 코드 평가(eval), 파일 경로 생성에 사용되지 않습니다.
 
-## Learning note
+위험한 코드 실행 금지: eval, exec, 쉘 명령, 외부 프로세스 호출(subprocess)을 일절 사용하지 않습니다.
 
-Hangul pronunciation is an approachable reading guide, not a perfect representation of English sounds. Use it alongside the original spelling and meaning. The questions cover selected grammar points and are a study aid, not a complete English course.
+투명한 실행 파일 구성: PyInstaller로 생성된 단일 실행 파일은 실행되는 동안 묶여 있는 리소스를 임시 폴더에 압축 해제하여 동작합니다. 이는 부트로더의 동작 방식일 뿐 사용자 퀴즈 데이터를 저장하는 것이 아닙니다.
 
-## License
+(이 보증은 앱의 코드 구조와 의도된 동작을 설명하는 것이며, 타사 빌드 환경이 완전히 위험하지 않음을 절대적으로 보장하는 것은 아닙니다. 신뢰할 수 있는 출처에서 빌드 도구를 구하고 실행 파일을 검증하세요.)
 
-Released under the [MIT License](LICENSE).
+💡 학습 참고 사항 (Learning Note)
+한글 발음 표기는 영어를 처음 접하는 영포자가 쉽게 읽을 수 있도록 돕는 보조 가이드일 뿐, 영어의 실제 발음을 100% 완벽하게 대체할 수는 없습니다. 원래의 영어 철자 및 단어 뜻과 함께 참고해 주세요. 이 문제집은 핵심 어법 포인트를 다루는 학습 보조 도구입니다.
+
+📜 라이선스 (License)
+이 프로젝트는 MIT 라이선스에 따라 자유롭게 이용할 수 있습니다.
